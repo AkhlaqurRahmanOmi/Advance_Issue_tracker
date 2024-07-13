@@ -9,7 +9,6 @@ const Navbar = () => {
             <Link href='/'><FaBug /></Link>
             <ul className='flex space-x-7'>
                 {links.map(link => <Link key={link.href} href={link.href} className='text-zinc-500 hover:text-zinc-900 transition-colors'>{link.label}</Link>)}
-
             </ul>
         </nav>
     )
