@@ -9,8 +9,8 @@ import { schema } from '@/app/ValidationSchema'
 import { z } from 'zod'
 import ErrorMessage from '@/app/components/ErrorMessage'
 import Spinner from '@/app/components/Spinner'
-// import SimpleMDE from "react-simplemde-editor";
-// import "easymde/dist/easymde.min.css";
+import SimpleMDE from 'react-simplemde-editor';
+import 'easymde/dist/easymde.min.css';
 
 
 // interface IssueForm {
@@ -48,8 +48,14 @@ const NewIssuePage = () => {
             <form className=' space-y-5' onSubmit={onSubmit}>
                 <TextField.Root placeholder='title' {...register('title')} />
                 <ErrorMessage>{errors.title?.message}</ErrorMessage>
-                {/* <Controller name='description' control={control} render={({ field }) => <TextArea placeholder='issues' />} /> */}
-                <TextArea placeholder='issues' {...register('description')} />
+                <Controller
+                    name="description"
+                    control={control}
+                    render={({ field }) => (
+                        <SimpleMDE placeholder="Description" {...field} />
+                    )}
+                />
+                {/* <TextArea placeholder='issues' {...register('description')} /> */}
                 <ErrorMessage>{errors.description?.message}</ErrorMessage>
                 <Button disabled={submitting}>Submit New Issue{submitting && <Spinner />}</Button>
             </form>
